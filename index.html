@@ -7,14 +7,42 @@
 </head>
 <body>
     <script> 
-    let playerselection = "rock";
-    let computerselection = getComputerChoice();
-    console.log("You Picked: " + playerselection + "\n" + "Computer picked: " + computerselection);
-    console.log(playround(playerselection,computerselection));
+    console.log("First to five wins!");
+    game();
+    function game() { 
+        let player = 0; 
+        let computer = 0;
+        while (player < 5 && computer < 5) { 
+            let playerselection = prompt("rock, paper, or scissors: ")
+            let computerselection= getComputerChoice();
+            console.log(`You picked: ${playerselection}.\nComputer picked: ${computerselection}. \n `);
+            let result = playround(playerselection,computerselection);
+            if (result == "You Win!") { 
+                console.log("You Win");
+                player++; 
+            }
+            else if (result == "You Lose.") { 
+                console.log("You Lose.");
+                computer++;
+            }
+            else if (result == "It's a tie.") { 
+                console.log("It's a tie.");
+            }
+            console.log("Score: " + player + "-" + computer);
+        }
+        console.log(`Final result is: \n ${player}    ||    ${computer}`);
+        if (player == 5 ) { 
+            console.log("Congratulations you won!");
+        } 
+        else if (computer == 5 ) { 
+            console.log("Sorry, you lost.");
+        }
+    }
+
     function playround(playerselection, computerselection) { 
         if(playerselection == "rock" || playerselection == "Rock" || playerselection == "ROCK") { 
             if ( computerselection == "rock") { 
-                return "it's a draw.";
+                return "It's a tie.";
             }
             else if (computerselection == "paper") { 
                 return "You Lose."; 
@@ -28,7 +56,7 @@
                 return "You Win!";
             }
             else if (computerselection == "paper") { 
-                return "It's a draw."; 
+                return "It's a tie."; 
             }
             else if (computerselection == "scissors") { 
                 return "You Lose.";
@@ -42,13 +70,14 @@
                 return "You Win!"; 
             }
             else if (computerselection == "scissors") { 
-                return "It's a draw.";
+                return "It's a tie.";
             }
         }
         else { 
             return "You must enter rock, paper, or scissors, Please try again.";
         }
     }
+
     function getComputerChoice() { 
         let picker = Math.floor(Math.random() * 3); 
         switch(picker) { 
