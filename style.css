@@ -1,0 +1,54 @@
+
+body { 
+    background-image: url(assets/img/background_retro.jpg);
+    background-size: cover;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height:100%;
+    width:100%;
+    min-height: 100vh;
+    padding: 0; 
+    margin: 0;
+    justify-content: space-between;
+    color:white;
+}
+@font-face {
+    font-family: "Press Start 2p";
+    src: url(assets/Press_Start_2P/PressStart2P-Regular.ttf) format("truetype");
+}
+.title { 
+    align-self: center;
+    font-family: "Press Start 2p";
+    font-size: 1.5rem;
+    min-height:15vh;
+    color:gold;
+}
+.middle { 
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.info1 { 
+    margin: 50px;
+}
+.container { 
+    min-width:300px;
+    min-height:300px;
+    display: flex;
+    margin: 50px;
+}
+button { 
+    width: 100px;
+    height:100px;
+    background: transparent;
+    border: none;
+    color:white;
+    font-size:1.5rem;
+}
+.footer { 
+    margin-top: auto;
+}
