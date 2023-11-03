@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll('button');
-
+let player = 0;
+let computer = 0;
 buttons.forEach(button => { 
     button.addEventListener('click', e => { 
         game(button.getAttribute("class"));
@@ -7,29 +8,37 @@ buttons.forEach(button => {
 })
 
 function game(choice) { 
-    let player = 0; 
-    let computer = 0;
     const scores = document.querySelector('.scores');
-        while (player < 5 && computer < 5) { 
-            let computerselection = getComputerChoice();
-            result = playround(choice, computerselection);
-            if (result == "You Win!") { 
-                player++; 
-                scores.textContent = "Score: " + player + " - " + computer;
-            }
-            else if (result == "You Lose.") { 
-                computer++;
-                scores.textContent = "Score: " + player + " - " + computer;
-            }
-        }
-    scores.textContent = "Final score is: " + player + " - " + computer;
+    const comp = document.querySelector('.comp'); 
+    const you = document.querySelector('.you');
+    let computerselection = getComputerChoice();
+    result = playround(choice, computerselection);
+
+    comp.textContent = "You picked: " + choice;
+    you.textContent = "Computer picked: " + computerselection;
+
+    if (result == "You Win!") { 
+        player++; 
+        scores.textContent = "Score: " + player + " - " + computer;
+    }
+    else if (result == "You Lose.") { 
+        computer++;
+        scores.textContent = "Score: " + player + " - " + computer;
+    }
+
     final = document.querySelector('.final');
     if (player == 5 ) { 
+        comp.remove();
+        you.remove();
         final.textContent = "Congratulations, You WON!";
+        scores.textContent = "Final score is: " + player + " - " + computer;
         endgame();
     } 
     else if (computer == 5 ) { 
+        comp.remove();
+        you.remove();
         final.textContent = "Sorry, You Lost.";
+        scores.textContent = "Final score is: " + player + " - " + computer;
         endgame();
     }
 }

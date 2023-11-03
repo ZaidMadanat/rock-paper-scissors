@@ -1,6 +1,6 @@
 
 body { 
-    background-image: url(/rps-game/docs/assets/images/background_retro.jpg);
+    background-image: url(docs/assets/images/background_retro.jpg);
     background-size: cover;
     display:flex;
     flex-direction: column;
