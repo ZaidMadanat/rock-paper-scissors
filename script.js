@@ -1,32 +1,36 @@
-console.log("First to five wins!");
-//game();
-function game() { 
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => { 
+    button.addEventListener('click', e => { 
+        game(button.getAttribute("class"));
+    })
+})
+
+function game(choice) { 
     let player = 0; 
     let computer = 0;
-    while (player < 5 && computer < 5) { 
-        let playerselection = prompt("rock, paper, or scissors: ")
-        let computerselection= getComputerChoice();
-        console.log(`You picked: ${playerselection}.\nComputer picked: ${computerselection}. \n `);
-        let result = playround(playerselection,computerselection);
-        if (result == "You Win!") { 
-            console.log("You Win");
-            player++; 
+    const scores = document.querySelector('.scores');
+        while (player < 5 && computer < 5) { 
+            let computerselection = getComputerChoice();
+            result = playround(choice, computerselection);
+            if (result == "You Win!") { 
+                player++; 
+                scores.textContent = "Score: " + player + " - " + computer;
+            }
+            else if (result == "You Lose.") { 
+                computer++;
+                scores.textContent = "Score: " + player + " - " + computer;
+            }
         }
-        else if (result == "You Lose.") { 
-            console.log("You Lose.");
-            computer++;
-        }
-        else if (result == "It's a tie.") { 
-            console.log("It's a tie.");
-        }
-        console.log("Score: " + player + "-" + computer);
-    }
-    console.log(`Final result is: \n ${player}    ||    ${computer}`);
+    scores.textContent = "Final score is: " + player + " - " + computer;
+    final = document.querySelector('.final');
     if (player == 5 ) { 
-        console.log("Congratulations you won!");
+        final.textContent = "Congratulations, You WON!";
+        endgame();
     } 
     else if (computer == 5 ) { 
-        console.log("Sorry, you lost.");
+        final.textContent = "Sorry, You Lost.";
+        endgame();
     }
 }
 
@@ -68,17 +72,6 @@ function playround(playerselection, computerselection) {
         return "You must enter rock, paper, or scissors, Please try again.";
     }
 }
-const results = document.querySelector('.results'); 
-
-
-const buttons = document.querySelectorAll('button'); 
-buttons.forEach((button) => { 
-    button.addEventListener('click', () => { 
-        let choice = button.getAttribute("class"); 
-        console.log(playround(choice, getComputerChoice())); 
-    })
-});
-
 
 function getComputerChoice() { 
     let picker = Math.floor(Math.random() * 3); 
@@ -93,4 +86,10 @@ function getComputerChoice() {
         return "scissors";
         break;
     }
+}
+
+function endgame() { 
+    buttons.forEach(button => { 
+        button.disabled = true;
+    })
 }
